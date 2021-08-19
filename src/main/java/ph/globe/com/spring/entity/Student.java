@@ -25,6 +25,6 @@ public class Student {
     private String password;
     private String program;
 
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 }

@@ -10,4 +10,6 @@ public class StudentDto {
     private String name;
     private String username;
     private String password;
+    private String program;
+    private AddressDto address;
 }
