@@ -1,14 +1,14 @@
-package ph.globe.com.spring.converter;
+package ph.globe.com.spring.service;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ph.globe.com.spring.dto.StudentDto;
 import ph.globe.com.spring.entity.Student;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class StudentConverter {
     public StudentDto entityToDto(Student student){
         //StudentDto dto = new StudentDto();
