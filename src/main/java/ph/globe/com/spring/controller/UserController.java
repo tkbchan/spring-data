@@ -2,7 +2,7 @@ package ph.globe.com.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ph.globe.com.spring.converter.StudentConverter;
+import ph.globe.com.spring.service.StudentConverter;
 import ph.globe.com.spring.dto.StudentDto;
 import ph.globe.com.spring.entity.Student;
 import ph.globe.com.spring.repository.StudentJpaRepository;
