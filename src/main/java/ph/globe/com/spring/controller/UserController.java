@@ -2,10 +2,11 @@ package ph.globe.com.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ph.globe.com.spring.service.StudentConverter;
 import ph.globe.com.spring.dto.StudentDto;
 import ph.globe.com.spring.entity.Student;
+import ph.globe.com.spring.mapper.StudentMapper;
 import ph.globe.com.spring.repository.StudentJpaRepository;
+import ph.globe.com.spring.service.StudentService;
 
 import java.util.List;
 
@@ -13,27 +14,22 @@ import java.util.List;
 @RequestMapping("/create-student")
 public class UserController {
     @Autowired
-    private StudentJpaRepository studentJpaRepository;
-    @Autowired
-    private StudentConverter studentConverter;
+    StudentService studentService;
 
-    @GetMapping(value = "/all")
-    public List<StudentDto> findAll(){
-        List<Student> findAll = studentJpaRepository.findAll();
-        return studentConverter.entityToDto(findAll);
+    @PostMapping("/save")
+    public Student createStudent(@RequestBody Student student){
+        return studentService.saveOrUpdate(student);
     }
 
-    @GetMapping(value = "/{studNo}")
-    public StudentDto findById(@PathVariable(value = "studNo") Long studNo){
-        Student orElse = studentJpaRepository.findById(studNo).orElse(null);
-        return studentConverter.entityToDto(orElse);
+    @GetMapping("/load/{studNo}")
+    public StudentDto findUserById(@PathVariable("studNo") long studNo){
+        Student userData = studentService.findById(studNo);
+        return StudentMapper.toStudentDto(userData);
     }
 
-    @PostMapping(value = "/save")
-    public StudentDto save(@RequestBody StudentDto dto){
-        Student student = studentConverter.dtoToEntity(dto);
-        studentJpaRepository.save(student);
-        return studentConverter.entityToDto(student);
+    @DeleteMapping("delete/{studNo}")
+    public void deleteUserByid(@PathVariable("studNo") long studNo){
+        studentService.deleteById(studNo);
     }
 
 
