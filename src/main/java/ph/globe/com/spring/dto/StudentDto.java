@@ -1,9 +1,15 @@
 package ph.globe.com.spring.dto;
 
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StudentDto {
 
     private Long studNo;

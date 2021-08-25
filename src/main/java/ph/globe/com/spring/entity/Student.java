@@ -1,16 +1,23 @@
 package ph.globe.com.spring.entity;
 
-import lombok.Data;
+
+
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-@Data
-@Table
 @Entity
-public class Student {
+@Table(name = "user")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Student implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studNo;
 
     @Column(updatable = false)
@@ -20,11 +27,19 @@ public class Student {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate = new Date();
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "program")
     private String program;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "address")
+    @OneToMany(mappedBy = "studentAccount", cascade = CascadeType.ALL)
     private Address address;
 }
