@@ -15,7 +15,7 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
-    @PostMapping("addAddress")
+    @PostMapping("/add")
     public AddressDto addAddress(@RequestBody AddressDto addressDTO){
         return AddressMapper.toAddressDTO(addressService.saveOrUpdate(AddressMapper.toAddress(addressDTO)));
     }

@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -41,5 +42,5 @@ public class Student implements Serializable{
 
     @Column(name = "address")
     @OneToMany(mappedBy = "studentAccount", cascade = CascadeType.ALL)
-    private Address address;
+    private List<Address> address;
 }
